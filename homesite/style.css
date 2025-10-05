@@ -1,0 +1,266 @@
+body {
+    background-color: #eff;
+}
+
+.head {
+    background-color: #eff;
+    border-bottom: 1.5px solid black;
+    height: 115px;
+    margin: -8px;
+    display: block;
+    font-family: 'Verdana', sans-serif;
+}
+
+.htitle {
+    display: flex;
+    font-family: 'Verdana', sans-serif;
+    white-space: nowrap;
+    font-size: 63px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.onselect {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    white-space: nowrap;
+    display: flex;
+    margin: 5px 0 0 15px;
+    font-size: 19px;
+}
+ 
+.select1, .select2, .select3, .select4, .select5 {
+    margin-left: 25px;
+    color: black;
+    z-index: 2;
+    transition: color 0.3s linear ;
+}
+
+.select1 {
+    color: white;
+}
+
+.select1::after {
+    content: "";
+    position: absolute;
+    top: 114.5px;
+    left: 30px;
+    height: 2.2px;
+    width: 0;
+    background-color: var(--after-color, white);
+    transition: width 0.3s ease ,background-color 0.3s linear;
+}
+
+.select1:hover::after {
+    width: 75px;
+    left: 30px;
+}
+
+.select2::after {
+    content: "";
+    position: absolute;
+    top: 114.5px;
+    left: 115px;
+    height: 2.2px;
+    width: 0;
+    background-color: var(--after-color, black);
+    transition: width 0.3s ease ,background-color 0.3s linear;
+}
+
+.select2:hover::after {
+    width: 130px;
+    left: 115px;
+}
+
+.select3::after {
+    content: "";
+    position: absolute;
+    top: 114.5px;
+    left: 253px;
+    height: 2.2px;
+    width: 0;
+    background-color: var(--after-color, black);
+    transition: width 0.3s ease ,background-color 0.3s linear;
+}
+
+.select3:hover::after {
+    width: 75px;
+    left: 253px;
+}
+
+.select4::after {
+    content: "";
+    position: absolute;
+    top: 114.5px;
+    left: 335px;
+    height: 2.2px;
+    width: 0;
+    background-color: var(--after-color, black);
+    transition: width 0.3s ease ,background-color 0.3s linear;
+}
+
+.select4:hover::after {
+    width: 90px;
+    left: 335px;
+}
+
+.select5::after {
+    content: "";
+    position: absolute;
+    top: 114.5px;
+    left: 435px;
+    height: 2.2px;
+    width: 0;
+    background-color: var(--after-color, black);
+    transition: width 0.3s ease ,background-color 0.3s linear;
+}
+
+.select5:hover::after {
+    width: 135px;
+    left: 435px;
+}
+
+.select-background {
+    position: absolute;
+    height: 40px;
+    width: 90px;
+    z-index: 1;
+    background-color: black;
+    margin-top: -8px;
+    left: 22px;
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+tag {
+    height: 17px;
+    font-size: 10px;
+    border-radius: 5px;
+    background-color: orange;
+    border: 1.2px solid black;
+    padding: 2px 5px 1px 5px;
+    position: absolute;
+    display: inline-block;
+}
+
+.span {
+    display: flex;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.main1 img {
+    border: 2px solid black;
+    margin-top: 15px;
+    margin-left: 10px;
+    height: 125px;
+    width: 125px;
+}
+
+#main1c {
+    position: relative;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    border: 2px solid black;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    height: 155px;
+    width: 90%;
+    overflow: hidden;
+}
+
+.main1title {
+    position: absolute;
+    display: inline-block;
+    margin: 7px 0 0 10px;
+}
+
+.main1tag {
+    margin-top: 7px;
+}
+
+#tag1 {
+    margin-left: 110px;
+}
+
+#tag2 {
+    margin-left: 210px;
+}
+
+#tag3 {
+    margin-left: 55px;
+}
+
+.main1day {
+    position: absolute;
+    display: inline-block;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+#m1day1 {
+    margin-left: 160px;
+}
+
+#m1day2 {
+    margin-left: 260px;
+}
+
+#m1day3 {
+    margin-left: 95px;
+}
+
+.main1exp {
+    position: absolute;
+    display: inline-block;
+    font-size: 15px;
+    margin: 35px 10px 0 20px;
+}
+
+#main2c {
+    position: relative;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    border: 2px solid black;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    height: 155px;
+    width: 90%;
+    overflow: hidden;
+}
+
+.main2 img {
+    border: 2px solid black;
+    margin-top: 15px;
+    margin-left: 10px;
+    height: 125px;
+    width: 125px;
+}
+
+.main2title {
+    position: absolute;
+    display: inline-block;
+    margin: 7px 0 0 10px;
+}
+
+.main2day {
+    position: absolute;
+    display: inline-block;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+#m2day1 {
+    margin-left: 150px;
+}
+
+#m2day2 {
+    margin-left: 150px;
+}
+
+.main2exp {
+    position: absolute;
+    display: inline-block;
+    font-size: 15px;
+    margin: 35px 10px 0 20px;
+}
+
