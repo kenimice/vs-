@@ -8,5 +8,39 @@
 <body>
     <a>root site</a>
     <a style="font-size: 40px;">404 not found</a>
+    <ul id="tree"></ul>
+
+    <script>
+    const user = "あなたのGitHubユーザー名";
+    const repo = "リポジトリ名";
+    const branch = "main"; // または "master"
+    
+    async function loadTree(path = "") {
+      const url = `https://api.github.com/repos/${user}/${repo}/contents/${path}?ref=${branch}`;
+      const res = await fetch(url);
+      const files = await res.json();
+      const ul = document.createElement("ul");
+    
+      for (const file of files) {
+        const li = document.createElement("li");
+        if (file.type === "dir") {
+          li.textContent = "📁 " + file.name;
+          li.appendChild(await loadTree(file.path)); // 再帰的に取得
+        } else {
+          const a = document.createElement("a");
+          a.textContent = file.name;
+          a.href = `https://github.com/${user}/${repo}/blob/${branch}/${file.path}`;
+          a.style.color = "#0ff";
+          li.appendChild(a);
+        }
+        ul.appendChild(li);
+      }
+      return ul;
+    }
+    
+    loadTree().then(tree => {
+      document.getElementById("tree").appendChild(tree);
+    });
+    </script>
 </body>
 </html>
