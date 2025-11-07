@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>無理minesweeper</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: #181A1B;
+            display: flex;
+            user-select: none;
+        }
+        .d1 {
+            margin-left: calc(50vw - 128.5px);
+            margin-top: calc(50vh - 179px);
+        }
+        .bomb {
+            position: absolute;
+            display: none;
+        }   
+        .bad {
+            position: absolute;
+            display: none;
+        }
+    </style>
+    <img src="picture1.png" alt="写真" class="d1">
+    <img src="bomb.png" alt="bomb" class="bomb" style="margin-top: calc(50vh - 95px); margin-left: calc(50vw - 106px);">
+    <img src="bad.png" alt="thats so bad" class="bad" style="margin-top: calc(50vh - 155px); margin-left: calc(50vw - 18px);">
+    <script>
+        let ininBomb = true;
+        let inBomb = false;
+        let bomb = document.querySelector(".bomb");
+        let bad = document.querySelector(".bad");
+        let height = window.innerHeight;
+        let width = window.innerWidth;
+        window.addEventListener(("resize"), () => {
+            height = window.innerHeight;
+            width = window.innerWidth;
+        });
+        window.addEventListener(("click"),  (e)=> {
+            if (e.y > height * 0.5 - 145 && e.y < height * 0.5 - 107) {
+                if (e.x > width * 0.5 - 8 && e.x < width * 0.5 + 30) {
+                    bad.style.display = "none";
+                    bomb.style.display = "none";
+                    if (ininBomb) inBomb = false;
+                }
+            }
+            if (e.y > height * 0.5 - 87 && e.y < height * 0.5 + 127 && !inBomb) {
+                if (e.x > width * 0.5 - 98 && e.x < width * 0.5 + 116) {
+                    if (ininBomb) inBomb = true;
+                    bomb.style.marginTop = e.y - 19 + "px";
+                    bomb.style.marginLeft = e.x - 19 + "px";
+                    bad.style.display = "flex";
+                    bomb.style.display = "flex";
+                }
+            }
+        })
+    </script>
+</body>
+</html>

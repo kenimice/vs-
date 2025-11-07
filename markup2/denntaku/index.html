@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電卓</title>
+</head>
+<body>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .calculator {
+        background: #2c3e50;
+        padding: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        max-width: 320px;
+        width: 100%;
+    }
+
+    .display {
+        margin-bottom: 20px;
+    }
+
+    .display input {
+        width: 100%;
+        height: 80px;
+        border: none;
+        border-radius: 10px;
+        background: #34495e;
+        color: #ecf0f1;
+        font-size: 28px;
+        text-align: right;
+        padding: 0 20px;
+        outline: none;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .btn {
+        height: 60px;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: gray;
+        transition: all 0.2s ease;
+        outline: none;
+    }
+    .btn:active {
+        transform: translateY(0);
+    }
+    .btn.number {
+        background: #95a5a6;
+        color: #2c3e50;
+    }
+    .btn.operator {
+        background: black;
+        color: white;
+    }
+    .btn.equals {
+        background: green;
+        color: white;
+    }
+    .btn.clear {
+        background: #95a5a6;
+        color: white;
+    }
+    </style>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="result" readonly>
+        </div>
+        <div class="buttons">
+            <button class="btn clear" onclick="clearEntry()">C</button>
+            <button class="btn" onclick="deleteLast()">←</button>
+            <button class="btn clear" onclick="clearResult()">AC</button>
+            <button class="btn operator" onclick="appendToResult('/')">/</button>
+            
+            <button class="btn number" onclick="appendToResult('7')">7</button>
+            <button class="btn number" onclick="appendToResult('8')">8</button>
+            <button class="btn number" onclick="appendToResult('9')">9</button>
+            <button class="btn operator" onclick="appendToResult('*')">×</button>
+            
+            <button class="btn number" onclick="appendToResult('4')">4</button>
+            <button class="btn number" onclick="appendToResult('5')">5</button>
+            <button class="btn number" onclick="appendToResult('6')">6</button>
+            <button class="btn operator" onclick="appendToResult('-')">-</button>
+            
+            <button class="btn number" onclick="appendToResult('1')">1</button>
+            <button class="btn number" onclick="appendToResult('2')">2</button>
+            <button class="btn number" onclick="appendToResult('3')">3</button>
+            <button class="btn operator" onclick="appendToResult('+')">+</button>
+            
+            <button class="btn number" onclick="appendToResult('0')">0</button>
+            <button class="btn number" onclick="appendToResult('00')">00</button>
+            <button class="btn number" onclick="appendToResult('.')">.</button>
+            <button class="btn equals" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script>
+        let display = document.getElementById('result');
+let currentInput = '';
+let operator = '';
+let previousInput = '';
+
+function appendToResult(value) {
+    const displayValue = display.value;
+    
+    if (['+', '-', '*', '/'].includes(value)) {
+        if (displayValue !== '' && !isNaN(displayValue.slice(-1))) {
+            if (previousInput !== '' && currentInput !== '') {
+                calculateResult();
+            }
+            previousInput = displayValue;
+            operator = value;
+            currentInput = '';
+            display.value += ' ' + value + ' ';
+        }
+    } else {
+        if (value === '.' && displayValue.includes('.')) {
+            const parts = displayValue.split(/[\+\-\*\/]/);
+            const lastPart = parts[parts.length - 1].trim();
+            if (lastPart.includes('.')) {
+                return;
+            }
+        }
+        
+        display.value += value;
+        currentInput += value;
+    }
+}
+
+function clearResult() {
+    display.value = '';
+    currentInput = '';
+    previousInput = '';
+    operator = '';
+}
+
+function clearEntry() {
+    if (currentInput !== '') {
+        const displayValue = display.value;
+        const currentInputLength = currentInput.length;
+        display.value = displayValue.slice(0, -currentInputLength);
+        currentInput = '';
+    } else if (display.value === '') {
+        clearResult();
+    }
+}
+
+function deleteLast() {
+    let currentValue = display.value;
+    if (currentValue.length > 0) {
+        if (currentValue.slice(-1) === ' ') {
+            display.value = currentValue.slice(0, -3);
+            operator = '';
+            currentInput = '';
+        } else {
+            display.value = currentValue.slice(0, -1);
+            currentInput = currentInput.slice(0, -1);
+        }
+    }
+}
+
+function calculateResult() {
+    display.value = 'エラー';
+}
+
+document.addEventListener('keydown', function(event) {
+    const key = event.key;
+    
+    if (key >= '0' && key <= '9' || key === '.') {
+        appendToResult(key);
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        appendToResult(key);
+    } else if (key === 'Enter' || key === '=') {
+        event.preventDefault();
+        calculateResult();
+    } else if (key === 'Escape' || key.toLowerCase() === 'c') {
+        clearResult();
+    } else if (key === 'Backspace') {
+        event.preventDefault();
+        deleteLast();
+    }
+});
+    </script>
+</body>
+</html>
