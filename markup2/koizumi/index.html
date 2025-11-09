@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小泉構文</title>
+</head>
+<body>
+    <p id="title">10年後の自分は何歳かな！</p>
+    <input type="text" id="input" placeholder="年齢を挿入">
+    <button type="submit" onclick="submit()">確定</button>
+    <p id="output">10年後：</p>
+    <style>
+        body {
+            background: #5e5959;
+            display: flex;
+            flex-direction: column;
+        }
+        #title {
+            margin: 100px 0 0 calc(50vw - 120px);
+            color: rgb(91, 244, 255);
+            font-size: 20px;
+        }
+        #input {
+            border-radius: 10px;
+            border: none;
+            width: 20%;
+            height: 30px;
+            margin-top: 30px;
+            margin-left: 40%;
+        }
+        button {
+            border-radius: 10px;
+            width: 20%;
+            height: 30px;
+            margin-top: 10px;
+            margin-left: 40%;
+        }
+        #output {
+            border: 2px solid black;
+            background-color: #fff;
+            width: 300px;
+            height: 100px;
+            margin-left: calc(50vw - 150px);
+            font-size: 30px;
+}
+</style>
+<script>
+    let output = document.getElementById('output')
+    function submit() {
+        let value = document.getElementById('input').value
+        let old = parseInt(value)
+        if (!isNaN(old)) {
+            old += 10;
+            output.innerHTML = "10年後：" + old;
+        }
+        else output.innerHTML = "10年後：" + "内海叡人";
+    }
+</script>
+</body>
+</html>
